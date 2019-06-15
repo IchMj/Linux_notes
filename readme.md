@@ -55,14 +55,16 @@
 		-v 反向查找
 		--auto=auto 显示颜色
 	#### 文件内容查看命令
-		- cat 从第一行文本开始查看
+- cat 从第一行文本开始查看
+
 			1. -A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；
 			2. -b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！
 			3. -E ：将结尾的断行字节 $ 显示出来；
 			4. -n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；
 			5. -T ：将 [tab] 按键以 ^I 显示出来；
 			6. -v ：列出一些看不出来的特殊字符
-		- tac 从最后一行开始往看前看
+- tac 从最后一行开始往看前看
+
 		- nl 输出的时候显示行号
 			1. -b ：指定行号指定的方式，主要有两种：
 			2. -b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；
@@ -72,14 +74,16 @@
 			6. -n rn ：行号在自己栏位的最右方显示，且不加 0 ；
 			7. -n rz ：行号在自己栏位的最右方显示，且加 0 ；
 			8. -w ：行号栏位的占用的位数。
-		- more 一页一页显示
+- more 一页一页显示
+
 			1. 空白键 (space)：代表向下翻一页；
 			2. Enter         ：代表向下翻『一行』；
 			3. /字串         ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；
 			4. :f            ：立刻显示出档名以及目前显示的行数；
 			5. q             ：代表立刻离开 more ，不再显示该文件内容。
 			6. b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。
-		- less 一页显示可以往前翻页
+- less 一页显示可以往前翻页
+
 			- 空白键    ：向下翻动一页；
 			- [pagedown]：向下翻动一页；
 			- [pageup]  ：向上翻动一页；
@@ -88,13 +92,16 @@
 			- n         ：重复前一个搜寻 (与 / 或 ? 有关！)
 			- N         ：反向的重复前一个搜寻 (与 / 或 ? 有关！)
 			- q         ：离开 less 这个程序
-		- head 只看前几行
+- head 只看前几行
+
 			-n ：后面接数字，代表显示几行的意思
-		- tail 只看后几行
+  - tail 只看后几行
+
 			-n ：后面接数字，代表显示几行的意思
 			-f ：表示持续侦测后面所接的档名，要等到按下[ctrl]-c才会结束tail的侦测
-	###### 添加用户和用户组
-		- useradd
+	#### 添加用户和用户组
+- useradd
+
 			 参数: useradd 选项 用户名
 			 	-c comment 指定一段注释性描述。
 				-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。
@@ -108,32 +115,40 @@
 				这里可能新建组：#groupadd group及groupadd adm
 				增加用户账号就是在/etc/passwd文件中为新用户增加一条记录，同时更新其他系统文件如/etc/shadow, /etc/group等。
 				Linux提供了集成的系统管理工具userconf，它可以用来对用户账号进行统一管理。
-		- userdel
+- userdel
+
 			 参数: userdel 选项 用户名
 			 	-r，它的作用是把用户的主目录一起删除。
-		- usermod 
+- usermod
+
 			 参数：usermod 选项 用户名
 			 	-l 新用户名
 			 	其他参数和useradd命令相同
 				# usermod -s /bin/ksh -d /home/z –g developer sam
 				此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
-		1.修改用户组groupmod
+1.修改用户组groupmod
+
 			-groupmod -g GID: 修改组ID
 			-n 新组名 		  修改组名
-		2.删除 groupdel
-		3.添加 groupadd 
+2.删除 groupdel
+
+3.添加 groupadd
+
 			-groupadd -g 添加组ID
-		4.gpasswd
+4.gpasswd
+
 			-gpasswd -a 把用户加入组 附加组
 			-gpasswd -d 把用户从组中删除
 
 ### 用户口令管理
-			- passwd 选项 用户名
+- passwd 选项 用户名
+
 				-l 锁定口令，即禁用账号。
 				-u 口令解锁。
 				-d 使账号无口令。
 				-f 强迫用户下次登录时修改口令。
-			- chage
+- chage
+
 				-l 查看用户的详细密码状态
 				-d 日期 设置为0 登录就修改没密码
 				-m 天数
@@ -458,9 +473,33 @@
 				done
 ## Linux服务管理
    1.rpm包管理
+
     ![rpm_image](https://github.com/IchMj/Linux_notes/blob/master/images/rpm.png)
+1.1chkconfig
 
+		chkconfig -list  查看启动项
+		chkconfig -level 2345 httpd on 自启动服务
+1.2修改配置文件自启动
 
+		/etc/rc.d/rc.loca
+		在里面输入 /etc/rc.d/init.d/httd start
+2.源码包安装服务启动
+
+		使用绝对路径启动 路径看安全说明
+2.1源码包的自启动
+		/etc/rc.d/rc.loca
+		在里面输入 /etc/rc.d/init.d/httd start
+#### 进程管理
+1. 查看系统进程
+
+        ps aux unit模式
+		ps -le Linux模式
+	- ps进程
+
+		![psjc](https://github.com/IchMj/Linux_notes/blob/master/images/jcps.png)
+    - 进程状态
+    
+        ![status](https://github.com/IchMj/Linux_notes/blob/master/images/jcstatus.png)
 
 
 
