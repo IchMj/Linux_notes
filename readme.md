@@ -473,8 +473,7 @@
 				done
 ## Linux服务管理
    1.rpm包管理
-
-    ![rpm_image](https://github.com/IchMj/Linux_notes/blob/master/images/rpm.png)
+![rpm_image](https://github.com/IchMj/Linux_notes/blob/master/images/rpm.png)
 1.1chkconfig
 
 		chkconfig -list  查看启动项
@@ -494,12 +493,93 @@
 
         ps aux unit模式
 		ps -le Linux模式
-	- ps进程
+- ps进程
+![psjc](https://github.com/IchMj/Linux_notes/blob/master/images/jcps.png)
+- 进程状态
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/jcstatus.png)
+2. 查看系统健康信息
+- top命令
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/top.png)
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/topjc.png)
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/topcpu.png)
+- pstree [选项] 查看进程树
 
-		![psjc](https://github.com/IchMj/Linux_notes/blob/master/images/jcps.png)
-    - 进程状态
-    
-        ![status](https://github.com/IchMj/Linux_notes/blob/master/images/jcstatus.png)
+    -p: 显示进程的PID
+    -u: 显示进程所属的用户
+3. 杀死进程
+    3.1  kill -l 查看信号
+
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/killxh.png)
+        kill -1 重启
+        kill -9 强制终止
+    3.2 killall [选项][信号] 进程名
+
+        -i 交互式，询问
+        -I: 忽略进程名大小写
+   3.3 pkill [选项][信号]
+
+        -t 终端号踢用户
+   3.4 /etc & 在命令后面加上命令后台执行
+
+   3.5 Ctrl+Z
+
+        暂停命令到后台
+
+   3.6 jobs 查看后台的工作
+
+        jobs -l
+        bg 加PID 可以恢复执行
+        fg 恢复到前台
+4. 系统资源查看
+
+- vmstat[刷新延时 刷新次数]监听系统资源
+- demesg 显示内核开机自检的信息
+- free命令查看内存的使用状态
+
+
+    b k m g单位
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/lsof.png)
+##### 系统定时任务
+1. crond服务与访问控制
+
+
+    service crond restart
+    chkconfig crond on
+- crontab命令
+
+
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/crontab.png)
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/crontabtime.png)
+
+### 日志管理
+
+1. 查看服务是否启动
+
+
+    ps aux | grep rsyslogd
+    chkconfig --list | grep rsyslogd 开机自启动
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/rsyslogd.png)
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/rsyslogd1.png)
+   - rpm安装的软件日志在 /ver/log/下面
+### 数据备份和恢复
+
+   1. 备份
+
+
+  - dump命令
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/dump.png)
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/dumpcat.png)
+
+  备份文件和目录只能进行完全备份不能进行增量备份
+  备份分区可以进行增量备份
+  - restore命令
+![status](https://github.com/IchMj/Linux_notes/blob/master/images/restore.png)
+
+
+
+
+
+
 
 
 
